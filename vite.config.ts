@@ -43,5 +43,6 @@ function figmaAssetPlugin() {
 }
 
 export default defineConfig({
+  base: '/',
   plugins: [figmaAssetPlugin(), stripVersionPlugin(), react()],
 })
