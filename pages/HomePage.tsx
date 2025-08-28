@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Portfolio Grid - 4x3 Layout */}
           <motion.div
-            className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-12"
+            className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
