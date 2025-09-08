@@ -37,13 +37,16 @@ export function PortfolioGrid() {
               className="group cursor-pointer"
               onClick={() => handleProjectClick(item.id)}
             >
-              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div
+                className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                style={{ backgroundColor: "#0B0B0B" }} // Dark background applied here
+              >
                 {/* Main Image Container */}
                 <div className="relative aspect-square overflow-hidden">
                   <ImageWithFallback
                     src={item.image}
                     alt={`${item.title} logo design`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                   />
@@ -64,9 +67,8 @@ export function PortfolioGrid() {
                   </div>
                 </div>
 
-                {/* Decorative Elements */}
+                {/* Decorative Dot */}
                 <div className="absolute top-4 right-4 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </div>
             </motion.div>
           ))}

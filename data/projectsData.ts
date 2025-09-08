@@ -1398,7 +1398,7 @@ export const projectsData: ProjectDetail[] = [
 
 // Featured items for home page and portfolio grid - simplified structure
 export const featuredItems = [
-  { id: 1, title: "Naturala", industry: "Organic Products", image: "/images/01Food court.jpg" },
+  { id: 1, title: "Naturala", industry: "Organic Products", image: "/images/black-01.png" },
   { id: 2, title: "Syntax Solutions", industry: "Software", image: "/images/02chroma creation.jpg" },
   { id: 3, title: "Surge Dynamics", industry: "Energy", image: "/images/03mishy.jpg" },
   { id: 4, title: "Precision Labs", industry: "Healthcare", image: "/images/04dynox.jpg" },
