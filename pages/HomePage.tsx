@@ -92,7 +92,7 @@ export default function HomePage() {
                 className="group cursor-pointer"
                 onClick={() => handleProjectClick(item.id)}
               >
-                <div className="relative aspect-square bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border">
+                <div className="relative aspect-square bg-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
                   <ImageWithFallback
                     src={item.image}
                     alt={`${item.title} logo design`}
