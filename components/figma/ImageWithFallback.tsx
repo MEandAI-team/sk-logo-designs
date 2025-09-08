@@ -22,6 +22,18 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
       </div>
     </div>
   ) : (
-    <img src={src} alt={alt} className={className} style={style} {...rest} onError={handleError} />
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      {...rest}
+      onError={handleError}
+      // Prevent jank and improve decode
+      decoding={rest.decoding ?? 'async'}
+      // Ensure lazy-loading when not explicitly eager
+      loading={rest.loading ?? 'lazy'}
+      // Hint to browser to allocate GPU path for transforms
+      style={{ ...(style as any), willChange: 'transform' }}
+    />
   )
 }

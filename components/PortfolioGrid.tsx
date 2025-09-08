@@ -22,7 +22,8 @@ export function PortfolioGrid() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, staggerChildren: 0.05 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
+          style={{ contain: 'content' }}
         >
           {displayedItems.map((item, index) => (
             <motion.div
@@ -33,22 +34,26 @@ export function PortfolioGrid() {
                 duration: 0.6,
                 delay: index * 0.05,
               }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               className="group cursor-pointer"
+              style={{ contentVisibility: 'auto', containIntrinsicSize: '400px 400px' }}
               onClick={() => handleProjectClick(item.id)}
             >
               <div
-                className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-                style={{ backgroundColor: "#0B0B0B" }} // Dark background applied here
+                className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 transform-gpu"
+                style={{ backgroundColor: "#0B0B0B", willChange: 'transform' }} // Dark background applied here
               >
                 {/* Main Image Container */}
                 <div className="relative aspect-square overflow-hidden">
                   <ImageWithFallback
                     src={item.image}
                     alt={`${item.title} logo design`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 transform-gpu"
+                    loading={index < 1 ? 'eager' : 'lazy'}
+                    fetchPriority={index < 4 ? 'high' : 'low'}
+                    sizes="(min-width: 768px) 25vw, 100vw"
                     decoding="async"
+                    draggable={false}
                   />
 
                   {/* Gradient Overlay */}
