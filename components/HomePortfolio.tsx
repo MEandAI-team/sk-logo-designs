@@ -42,8 +42,7 @@ export function HomePortfolio() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          style={{ contain: 'content' }}
+          viewport={{ once: true }}
         >
           {displayedItems.map((item, index) => (
             <motion.div
@@ -51,21 +50,17 @@ export function HomePortfolio() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true }}
               className="group cursor-pointer"
-              style={{ contentVisibility: 'auto', containIntrinsicSize: '320px 400px' }}
               onClick={() => handleProjectClick(item.id)}
             >
-              <div className="relative aspect-[4/5] bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 transform-gpu" style={{ willChange: 'transform' }}>
+              <div className="relative aspect-[4/5] bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                 <ImageWithFallback
                   src={item.image}
                   alt={`${item.title} logo design`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu"
-                  loading={index < 1 ? 'eager' : 'lazy'}
-                  fetchPriority={index < 4 ? 'high' : 'low'}
-                  sizes="(min-width: 768px) 25vw, 100vw"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                   decoding="async"
-                  draggable={false}
                 />
 
                 {/* Simple Hover Overlay */}
