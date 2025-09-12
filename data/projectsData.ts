@@ -1409,7 +1409,6 @@ export const featuredItems = [
   { id: 9, title: "Train Tough", industry: "Real Estate", image: "/images/09train tough.webp" },
   { id: 10, title: "Faces", industry: "Beauty and Fashion", image: "/images/10faces.webp" },
   { id: 11, title: "Drapeshape", industry: "Photography", image: "/images/11drapeshape.webp" },
-  { id: 11, title: "Drapeshape", industry: "Photography", image: "/images/11drapeshape.webp" },
   { id: 12, title: "Bhalar", industry: "Oraganic Products", image: "/images/12bhalar.webp" },
   { id: 13, title: "GD Construction", industry: "Construction", image: "/images/13 gd construction.webp" },
   { id: 14, title: "MOA Architects", industry: "Architecture", image: "/images/14 MOA architects.webp" },
