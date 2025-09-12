@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SK Design</title>
+    <link rel="icon" type="image/png" href="/images/01Food court.webp" />
   </head>
   <body>
+    <!-- Splash screen overlay (shows immediately on page load) -->
+    <div id="splash-screen" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#0B0C10;transition:opacity .3s ease;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);">
+      <img src="/images/white logo.webp" alt="Loading" style="width:min(60vw,260px);max-width:90vw;max-height:70vh;height:auto;object-fit:contain;" />
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/main.tsx"></script>
   </body>
