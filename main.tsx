@@ -8,14 +8,22 @@ function Root() {
   useEffect(() => {
     const el = document.getElementById('splash-screen')
     if (!el) return
-    // fade out
-    el.style.opacity = '0'
-    // remove after transition
-    const timeout = setTimeout(() => {
-      el.parentElement?.removeChild(el)
-    }, 300)
-    return () => clearTimeout(timeout)
+
+    // ⏳ keep splash for at least 2000ms (2 seconds)
+    const showTime = 2000
+
+    const delay = setTimeout(() => {
+      el.style.opacity = '0'
+      // remove after transition (300ms)
+      const fadeOut = setTimeout(() => {
+        el.parentElement?.removeChild(el)
+      }, 300)
+      return () => clearTimeout(fadeOut)
+    }, showTime)
+
+    return () => clearTimeout(delay)
   }, [])
+
   return <App />
 }
 
