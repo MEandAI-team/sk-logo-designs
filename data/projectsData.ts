@@ -36,33 +36,33 @@ export interface ProjectDetail {
 export const projectsData: ProjectDetail[] = [
   {
     id: 1,
-    title: "Naturala",
-    industry: "Organic Products",
-    client: "Naturala Inc.",
+    title: "Mishy",
+    industry: "Fashion",
+    client: "Mishy",
     year: "2024",
-    description: "Naturala is a company that manufactures different organic products which include Organic Food Products and Organic Personal Care Products. With a mission of Developing Organic Delicacies to suit for Fresh and Delicious products delivered locally.",
-    challenge: "The client needed a logo that would convey trust and connect with health-conscious organic products companies yet still maintain a distinctive local appeal that resonates.",
-    solution: "We developed a sophisticated leaf-inspired logo that combines natural elements with modern typography, creating a premium yet approachable brand identity.",
-    heroImage: "/api/placeholder/800/600",
+    description: "The Mishy logo is designed to reflect fashion, and elegance. The word “mishy” is seamlessly integrated into the outline of a hanger a universal symbol of clothing. This creative fusion represents the brand’s focus on women’s fashion and style. The flowing script font adds a touch of softness and charm, mirroring the grace and confidence of modern women. ",
+    challenge: "To create a logo that elegantly represents women’s fashion while remaining simple, memorable, and versatile across all media.",
+    solution: "A hanger-shaped logo seamlessly merging with the word “Mishy,” symbolizing fashion, elegance, and modern femininity.",
+    heroImage: "/images/mishy/image-01.webp",
     logoVariations: [
       {
         title: "Primary Logo",
-        image: "/api/placeholder/400/400",
+        image: "/images/mishy/image-01.webp",
         description: "Main logo with full wordmark and symbol"
       },
       {
         title: "Symbol Only",
-        image: "/api/placeholder/400/400",
+        image: "/images/mishy/image-02.webp",
         description: "Standalone symbol for compact applications"
       },
       {
         title: "Horizontal Layout",
-        image: "/api/placeholder/400/400",
+        image: "/images/mishy/image-03.webp",
         description: "Alternative horizontal arrangement"
       },
       {
         title: "Monochrome Version",
-        image: "/api/placeholder/400/400",
+        image: "/images/mishy/image-04.webp",
         description: "Single color version for specific use cases"
       }
     ],
@@ -81,17 +81,17 @@ export const projectsData: ProjectDetail[] = [
     mockups: [
       {
         title: "Product Packaging",
-        image: "/api/placeholder/500/400",
+        image: "/images/mishy/image-02.webp",
         description: "Logo application on organic product bottles"
       },
       {
         title: "Business Cards",
-        image: "/api/placeholder/500/400",
+        image: "/images/mishy/image-03.webp",
         description: "Professional stationery design"
       },
       {
         title: "Website Header",
-        image: "/api/placeholder/500/400",
+        image: "/images/mishy/image-04.webp",
         description: "Digital brand implementation"
       }
     ],

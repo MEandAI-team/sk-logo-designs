@@ -25,7 +25,6 @@ export default function PortfolioPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Portfolio Grid Section */}
       <section className="pb-20">
         <motion.div
