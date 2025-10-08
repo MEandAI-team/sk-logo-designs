@@ -1398,9 +1398,9 @@ export const projectsData: ProjectDetail[] = [
 
 // Featured items for home page and portfolio grid - simplified structure
 export const featuredItems = [
-  { id: 1, title: "SV Food Court", industry: "Food & Beverage", image: "/images/01Food court.webp"},
+  { id: 1, title: "Mishy", industry: "Fashion", image: "/images/03mishy.webp"},
   { id: 2, title: "Chroma Creation", industry: "Editing", image: "/images/02chroma creation.webp" },
-  { id: 3, title: "Mishy", industry: "Fashion", image: "/images/03mishy.webp" },
+  { id: 3, title: "SV Food Court", industry: "Food & Beverage", image: "/images/01Food court.webp"},
   { id: 4, title: "Dynox", industry: "Healthcare", image: "/images/04dynox.webp"},
   { id: 5, title: "Shree Production Films", industry: "Photography", image: "/images/05shree production.webp" },
   { id: 6, title: "emerald", industry: "Oragnic Products", image: "/images/06emerald.webp" },

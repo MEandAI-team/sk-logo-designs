@@ -1,12 +1,14 @@
 "use client";
 
 import { useParams, useNavigate } from "react-router-dom";
+// NOTE: I've kept the original import "motion/react" as provided in your code
+// If you use Framer Motion, it should be import { motion } from "framer-motion";
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { projectsData } from "../data/projectsData";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback"; // Now handles skeleton & lazy loading
 
-// Real image URLs replacing figma:asset placeholders
+// Real image URLs replacing figma:asset placeholders (used as fallbacks)
 const exampleImage1 = '/images/IMG_1738.JPG';
 const exampleImage2 = 'https://images.unsplash.com/photo-1516637090014-cb1ab0d08fc7?q=80&w=1920&auto=format&fit=crop';
 const exampleImage3 = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1920&auto=format&fit=crop';
@@ -16,7 +18,7 @@ export default function ProjectDetailPage() {
   const navigate = useNavigate();
 
   const project = projectsData.find(
-    (p) => p.id === parseInt(id || ""),
+    (p) => p.id === parseInt(id || "", 10), // Added radix 10
   );
 
   if (!project) {
@@ -65,7 +67,7 @@ export default function ProjectDetailPage() {
             src={(typeof imageIndex !== 'undefined' && project.mockups?.[parseInt(imageIndex)]?.image) || project.heroImage}
             alt={`${project.title} hero image`}
             className="w-full h-full object-cover"
-            loading="eager"
+            loading="eager" // PERFORMANCE FIX: Must be EAGER for above-the-fold content
             decoding="async"
           />
 
@@ -93,7 +95,7 @@ export default function ProjectDetailPage() {
         </div>
       </motion.section>
 
-      {/* Text Section - 3 Lines of Content */}
+      {/* Text Section - 3 Lines of Content (FIXED TO USE PROJECT DATA) */}
       <section className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -103,51 +105,45 @@ export default function ProjectDetailPage() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            {/* Line 1 */}
+            {/* Line 1: Description */}
             <p className="text-lg sm:text-xl text-foreground leading-relaxed font-['Poppins']">
               {project.description}
             </p>
 
-            {/* Line 2 */}
+            {/* Line 2: Challenge (FIXED to use project.challenge) */}
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-['Poppins']">
-              The challenge was to make a minimal logo which
-              shows 'oil' and the 'organic' part of the brand in
-              a small and easily recognizable mark. Most of the
-              competitors are using very cliche logos and we
-              wanted to come up with something different.
+              **Challenge:** {project.challenge}
             </p>
 
-            {/* Line 3 */}
+            {/* Line 3: Solution/Role (FIXED to use project.solution) */}
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-['Poppins']">
-              My role was to work on the logo and brand identity
-              for Sillbly.
+              **Solution:** {project.solution}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Three Images Section */}
+      {/* Three Images Section (Updated to use ImageWithFallback's lazy loading + skeleton) */}
       <section className="pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8 sm:space-y-12">
+            
             {/* First Image - Full Width */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="w-full cursor-pointer"
+              viewport={{ once: true, amount: 0.2 }} // Optimized viewport for motion
+              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden" // Added rounded-2xl and overflow-hidden for the wrapper
               onClick={() => navigate(`/project/${project.id}/image/0`)}
             >
-              <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl bg-white">
-                <ImageWithFallback
-                  src={project.mockups?.[0]?.image || project.heroImage}
-                  alt={`${project.title} design process`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              {/* ImageWithFallback handles the skeleton and defaults to lazy loading */}
+              <ImageWithFallback
+                src={project.mockups?.[0]?.image || exampleImage1}
+                alt={`${project.title} design process`}
+                className="w-full h-full object-cover"
+                style={{ aspectRatio: '21 / 9' }} // Ensures the skeleton maintains aspect ratio
+              />
             </motion.div>
 
             {/* Second Image - Full Width */}
@@ -155,19 +151,16 @@ export default function ProjectDetailPage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="w-full cursor-pointer"
+              viewport={{ once: true, amount: 0.2 }}
+              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden"
               onClick={() => navigate(`/project/${project.id}/image/1`)}
             >
-              <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl bg-white">
-                <ImageWithFallback
-                  src={project.mockups?.[1]?.image || project.heroImage}
-                  alt={`${project.title} final design`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <ImageWithFallback
+                src={project.mockups?.[1]?.image || exampleImage2}
+                alt={`${project.title} final design`}
+                className="w-full h-full object-cover"
+                style={{ aspectRatio: '21 / 9' }}
+              />
             </motion.div>
 
             {/* Third Image - Full Width */}
@@ -175,19 +168,16 @@ export default function ProjectDetailPage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="w-full cursor-pointer"
+              viewport={{ once: true, amount: 0.2 }}
+              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden"
               onClick={() => navigate(`/project/${project.id}/image/2`)}
             >
-              <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl bg-white">
-                <ImageWithFallback
-                  src={project.mockups?.[2]?.image || project.heroImage}
-                  alt={`${project.title} brand applications`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <ImageWithFallback
+                src={project.mockups?.[2]?.image || exampleImage3}
+                alt={`${project.title} brand applications`}
+                className="w-full h-full object-cover"
+                style={{ aspectRatio: '21 / 9' }}
+              />
             </motion.div>
           </div>
         </div>
