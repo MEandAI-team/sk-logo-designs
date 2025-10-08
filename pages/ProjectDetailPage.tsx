@@ -1,24 +1,24 @@
 "use client";
 
 import { useParams, useNavigate } from "react-router-dom";
-// NOTE: I've kept the original import "motion/react" as provided in your code
-// If you use Framer Motion, it should be import { motion } from "framer-motion";
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { projectsData } from "../data/projectsData";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback"; // Now handles skeleton & lazy loading
+import { ImageWithFallback } from "../components/figma/ImageWithFallback"; 
 
 // Real image URLs replacing figma:asset placeholders (used as fallbacks)
-const exampleImage1 = '/images/IMG_1738.JPG';
-const exampleImage2 = 'https://images.unsplash.com/photo-1516637090014-cb1ab0d08fc7?q=80&w=1920&auto=format&fit=crop';
-const exampleImage3 = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1920&auto=format&fit=crop';
+// These example images are only for fallbacks if project.mockups don't exist
+const fallbackImage1 = '/images/IMG_1738.JPG'; // Adjust path as needed
+const fallbackImage2 = 'https://images.unsplash.com/photo-1516637090014-cb1ab0d08fc7?q=80&w=1920&auto=format&fit=crop';
+const fallbackImage3 = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1920&auto=format&fit=crop';
+
 
 export default function ProjectDetailPage() {
   const { id, imageIndex } = useParams();
   const navigate = useNavigate();
 
   const project = projectsData.find(
-    (p) => p.id === parseInt(id || "", 10), // Added radix 10
+    (p) => p.id === parseInt(id || "", 10),
   );
 
   if (!project) {
@@ -38,6 +38,20 @@ export default function ProjectDetailPage() {
       </div>
     );
   }
+
+  // Helper to get mockup data with fallback
+  const getMockupData = (index: number) => {
+    if (project.mockups && project.mockups[index]) {
+      return project.mockups[index];
+    }
+    // Fallback if mockup data is missing.
+    // Ensure these fallbacks have a default aspect ratio if not explicitly defined.
+    if (index === 0) return { image: fallbackImage1, aspectRatio: "aspect-video" };
+    if (index === 1) return { image: fallbackImage2, aspectRatio: "aspect-video" };
+    if (index === 2) return { image: fallbackImage3, aspectRatio: "aspect-video" };
+    return { image: "", aspectRatio: "aspect-video" }; // Default empty or a universal fallback image/ratio
+  };
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -67,7 +81,7 @@ export default function ProjectDetailPage() {
             src={(typeof imageIndex !== 'undefined' && project.mockups?.[parseInt(imageIndex)]?.image) || project.heroImage}
             alt={`${project.title} hero image`}
             className="w-full h-full object-cover"
-            loading="eager" // PERFORMANCE FIX: Must be EAGER for above-the-fold content
+            loading="eager" 
             decoding="async"
           />
 
@@ -95,7 +109,7 @@ export default function ProjectDetailPage() {
         </div>
       </motion.section>
 
-      {/* Text Section - 3 Lines of Content (FIXED TO USE PROJECT DATA) */}
+      {/* Text Section - 3 Lines of Content */}
       <section className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -110,12 +124,12 @@ export default function ProjectDetailPage() {
               {project.description}
             </p>
 
-            {/* Line 2: Challenge (FIXED to use project.challenge) */}
+            {/* Line 2: Challenge */}
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-['Poppins']">
               **Challenge:** {project.challenge}
             </p>
 
-            {/* Line 3: Solution/Role (FIXED to use project.solution) */}
+            {/* Line 3: Solution/Role */}
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-['Poppins']">
               **Solution:** {project.solution}
             </p>
@@ -123,7 +137,7 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* Three Images Section (Updated to use ImageWithFallback's lazy loading + skeleton) */}
+      {/* Three Images Section (Dynamically Adjusted Aspect Ratios) */}
       <section className="pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8 sm:space-y-12">
@@ -133,16 +147,15 @@ export default function ProjectDetailPage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true, amount: 0.2 }} // Optimized viewport for motion
-              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden" // Added rounded-2xl and overflow-hidden for the wrapper
+              viewport={{ once: true, amount: 0.2 }}
+              // 🔥 Dynamic Aspect Ratio from project data
+              className={`w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden group relative ${getMockupData(0).aspectRatio || 'aspect-video'}`} 
               onClick={() => navigate(`/project/${project.id}/image/0`)}
             >
-              {/* ImageWithFallback handles the skeleton and defaults to lazy loading */}
               <ImageWithFallback
-                src={project.mockups?.[0]?.image || exampleImage1}
+                src={getMockupData(0).image}
                 alt={`${project.title} design process`}
-                className="w-full h-full object-cover"
-                style={{ aspectRatio: '21 / 9' }} // Ensures the skeleton maintains aspect ratio
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
               />
             </motion.div>
 
@@ -152,14 +165,14 @@ export default function ProjectDetailPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden"
+              // 🔥 Dynamic Aspect Ratio from project data
+              className={`w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden group relative ${getMockupData(1).aspectRatio || 'aspect-video'}`}
               onClick={() => navigate(`/project/${project.id}/image/1`)}
             >
               <ImageWithFallback
-                src={project.mockups?.[1]?.image || exampleImage2}
+                src={getMockupData(1).image}
                 alt={`${project.title} final design`}
-                className="w-full h-full object-cover"
-                style={{ aspectRatio: '21 / 9' }}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </motion.div>
 
@@ -169,14 +182,14 @@ export default function ProjectDetailPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden"
+              // 🔥 Dynamic Aspect Ratio from project data
+              className={`w-full cursor-pointer shadow-2xl rounded-2xl overflow-hidden group relative ${getMockupData(2).aspectRatio || 'aspect-video'}`}
               onClick={() => navigate(`/project/${project.id}/image/2`)}
             >
               <ImageWithFallback
-                src={project.mockups?.[2]?.image || exampleImage3}
+                src={getMockupData(2).image}
                 alt={`${project.title} brand applications`}
-                className="w-full h-full object-cover"
-                style={{ aspectRatio: '21 / 9' }}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </motion.div>
           </div>
