@@ -74,7 +74,7 @@ export const projectsData: ProjectDetail[] = [
       background: "#F8FBF6"
     },
     typography: {
-      primary: "Brandon Grotesque",
+      primary: "Brandon Grotesques",
       secondary: "Open Sans",
       description: "Clean, modern typefaces that reflect professionalism while maintaining organic warmth"
     },
