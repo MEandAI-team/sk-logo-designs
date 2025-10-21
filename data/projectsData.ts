@@ -104,33 +104,33 @@ export const projectsData: ProjectDetail[] = [
   },
   {
     id: 2,
-    title: "Syntax Solutions",
-    industry: "Software Development",
-    client: "Syntax Solutions Ltd.",
+    title: "Emerald",
+    industry: "Emerald Tea & Spices",
+    client: "Emerald Tea & Spices",
     year: "2024",
-    description: "A cutting-edge software development company specializing in custom applications and digital transformation solutions for enterprise clients.",
-    challenge: "Create a modern, tech-focused identity that conveys innovation and reliability while standing out in the competitive software industry.",
-    solution: "Developed a geometric logo combining code brackets with clean typography, representing both technical expertise and professional service.",
-    heroImage: "/api/placeholder/800/600",
+    description: "This is the brand identity for Emerald Tea & Spices, known for offering high-quality traditional teas and spices. The logo creatively uses the letter 'e', incorporating a tea cup in negative space and spice leaves on top, symbolizing natural and wholesome ingredients. The tagline “Sourcing Tradition. Brewing Wellness” reflects the brand’s focus on authenticity and health. The overall design combines simplicity, creativity, and nature-inspired elegance.",
+    challenge: "To design a logo that harmoniously represents both tea and spices while maintaining simplicity and a natural aesthetic that reflects purity, wellness, and tradition.",
+    solution: "A minimalist logo creatively integrating the letter ‘e’ with a tea cup in negative space and spice leaves on top, symbolizing freshness and natural ingredients. The design, paired with the tagline “Sourcing Tradition. Brewing Wellness”, effectively communicates authenticity, quality, and health-focused branding.",
+    heroImage: "/images/emerald/emerald square.webp",
     logoVariations: [
       {
         title: "Primary Logo",
-        image: "/api/placeholder/400/400",
+        image: "/images/emerald/emerald square.webp",
         description: "Full logo with integrated code bracket symbol"
       },
       {
         title: "Icon Version",
-        image: "/api/placeholder/400/400",
+        image: "/images/emerald/img1.webp",
         description: "Simplified bracket icon for app and social media"
       },
       {
         title: "Stacked Layout",
-        image: "/api/placeholder/400/400",
+        image: "/images/emerald/img2.webp",
         description: "Vertical arrangement for square formats"
       },
       {
         title: "Light Version",
-        image: "/api/placeholder/400/400",
+        image: "/images/emerald/img3.webp",
         description: "Inverted colors for dark backgrounds"
       }
     ],
@@ -149,17 +149,17 @@ export const projectsData: ProjectDetail[] = [
     mockups: [
       {
         title: "Mobile App Icon",
-        image: "/api/placeholder/500/400",
+        image: "/images/emerald/img1.webp",
         description: "Logo adapted for mobile application"
       },
       {
         title: "Website Interface", 
-        image: "/api/placeholder/500/400",
+        image: "/images/emerald/img2.webp",
         description: "Brand integration in web platform"
       },
       {
         title: "Corporate Presentation",
-        image: "/api/placeholder/500/400",
+        image: "/images/emerald/img3.webp",
         description: "Professional slide template design"
       }
     ],
@@ -1399,11 +1399,11 @@ export const projectsData: ProjectDetail[] = [
 // Featured items for home page and portfolio grid - simplified structure
 export const featuredItems = [
   { id: 1, title: "Mishy", industry: "Fashion", image: "/images/03mishy.webp"},
-  { id: 2, title: "Chroma Creation", industry: "Editing", image: "/images/02chroma creation.webp" },
+  { id: 2, title: "Emerald", industry: "Oragnic Products", image: "/images/06emerald.webp"},
   { id: 3, title: "SV Food Court", industry: "Food & Beverage", image: "/images/01Food court.webp"},
   { id: 4, title: "Dynox", industry: "Healthcare", image: "/images/04dynox.webp"},
   { id: 5, title: "Shree Production Films", industry: "Photography", image: "/images/05shree production.webp" },
-  { id: 6, title: "emerald", industry: "Oragnic Products", image: "/images/06emerald.webp" },
+  { id: 6, title: "Chroma Creation", industry: "Editing", image: "/images/02chroma creation.webp" },
   { id: 7, title: "Vedastra", industry: "Software", image: "/images/07vedastra.webp" },
   { id: 8, title: "Cafe Buddy", industry: "Food & Beverage", image: "/images/08cafe buddy.webp" },
   { id: 9, title: "Train Tough", industry: "Real Estate", image: "/images/09train tough.webp" },

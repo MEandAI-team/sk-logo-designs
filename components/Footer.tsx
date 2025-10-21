@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion' 
 import { useNavigate } from 'react-router-dom'
 import { ArrowUp, Dribbble, Instagram, Linkedin, Mail } from 'lucide-react'
 
@@ -109,7 +109,7 @@ export function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
+        {/* Bottom Section: Copyright and Back to Top */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <motion.p
             initial={{ opacity: 0 }}
@@ -118,9 +118,9 @@ export function Footer() {
             viewport={{ once: true }}
             className="text-muted-foreground text-sm font-['Lato']"
           >
-            © 2024 All rights reserved by me&AI Solution.
+            © 2025 All rights reserved by SK Logo Designs.
           </motion.p>
-
+          
           <motion.button
             onClick={scrollToTop}
             initial={{ opacity: 0 }}
@@ -134,6 +134,25 @@ export function Footer() {
             <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform duration-200" />
           </motion.button>
         </div>
+
+        {/* NEW: Centered Link at the very bottom */}
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-4 pt-4 text-center"
+        >
+            <motion.a
+                href="https://meandai.vercel.app" // Set to blank as requested
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm font-['Lato']"
+                whileHover={{ scale: 1.05 }}
+            >
+                Website created by @MEandAI
+            </motion.a>
+        </motion.div>
       </div>
     </footer>
   )
